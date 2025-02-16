@@ -2,13 +2,30 @@
   "name": "application-de-billetterie",
   "version": "1.0.0",
   "description": "Une application de billetterie innovante qui simplifie l'achat et la gestion des billets en ligne. Pensée pour le marché africain, elle offre une expérience fluide, sécurisée et accessible à tous. Que ce soit pour des événements, des concerts ou des voyages, notre solution digitalise l'accès aux billets en toute simplicité.",
+  "directories": {
+    "lib": "lib"
+  },
   "main": "index.js",
   "scripts": {
+    "start": "ts-node server.ts", 
+    "build": "tsc", 
+    "dev": "ts-node-dev server.ts", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "stripe": "^17.6.0"
     "@prisma/client": "^6.3.1"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "prisma": "^6.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0"
+  },
+  "keywords": [],
+  "description": ""
 }
