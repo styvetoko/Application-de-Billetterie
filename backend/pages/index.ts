@@ -1,32 +1,58 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient, EventInclude } from '@prisma/client';
-import { Event } from '@prisma/client';
+import { PrismaClient, EventCreateInput, Event } from '@prisma/client';
 
-// Créez une instance de PrismaClient
+// Instance unique de Prisma (évite les connexions multiples)
 const prisma = new PrismaClient();
 
-// Gestionnaire pour la route `/api/events` (GET)
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method === 'GET') {
-        try {
-            const events = await prisma.event.findMany({
-                include: {
-                    category: true,
-                    artist: { select: { name: true } }
-                },  // Ajoutez des options de requête supplémentaires ici
-            });
-            console.log(event);
-            await prisma.$disconnect(); // Important: Déconnectez-vous de Prisma après utilisation
+    try {
+        switch (req.method) {
+            case 'GET':
+                const events = await prisma.event.findMany({
+                    include: { category: true }
+                });
+                return res.status(200).json(events);
 
-            res.status(200).json(events);
-        } catch (error: unknown) {
-            console.error("Error fetching events:", (error as Error).message);
-            res.status(500).json({
-                error: 'Failed to fetch events',
-                details: error.message // Ajoutez des détails pour le débogage
-            });
+            case 'POST':
+                const body = JSON.parse(req.body);
+                const { name, date, categoryId, category }: {name: string, date: string, categoryId: number, category: Event} = body;
+
+                // Vérification des données
+                if (!name || !date || !categoryId || !category) {
+                    return res.status(400).json({ error: 'Données incomplètes' });
+                }
+
+                //Conversion de la date en objet Date
+                const dateObject = new Date(date);
+
+                console.log(category)
+
+                const newEvent = await prisma.event.create({
+                    data: { name, date: dateObject, categoryId, category }
+                });
+
+
+                return res.status(201).json(newEvent);
+
+            case 'DELETE':
+                const eventId = req.query.id as string;
+
+                // Vérification de l'ID valide
+                if (!eventId || isNaN(parseInt(eventId))) {
+                    return res.status(400).json({ error: "ID invalide" });
+                }
+
+                const deletedEvent = await prisma.event.delete({
+                    where: { id: parseInt(eventId) }
+                });
+
+                return res.status(200).json(deletedEvent);
+
+            default:
+                return res.status(405).json({ error: `Méthode ${req.method} non autorisée` });
         }
-    } else {
-        res.status(405).json({ error: `Method ${req.method} Not Allowed` });
+    } catch (error: unknown) {
+        console.error("Erreur API:", (error as Error).message);
+        return res.status(500).json({ error: 'Erreur interne du serveur', details: (error as Error).message });
     }
 }
