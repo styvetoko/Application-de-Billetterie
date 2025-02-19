@@ -13,6 +13,7 @@ export async function getEventById(id) {
   // Replace with your actual database query
   const event = { id: id, title: 'Event ' + id, date: '2024-05-0' + id };
   return event;
+  
 }
 
 export async function createEvent(data) {
