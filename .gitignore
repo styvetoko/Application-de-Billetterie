@@ -1,0 +1,69 @@
+node_modules
+PS C:\Users\STYVE TOKO\Application-de-Billetterie> ng new Frontend-Angular
+✔ Which stylesheet format would you like to use? Sass (SCSS)     [ 
+https://sass-lang.com/documentation/syntax#scss                ]
+✔ Do you want to enable Server-Side Rendering (SSR) and Static Site Generation 
+(SSG/Prerendering)? Yes
+✔ Would you like to use the Server Routing and App Engine APIs (Developer Preview) for this     
+server application? Yes
+CREATE Frontend-Angular/angular.json (3066 bytes)
+CREATE Frontend-Angular/package.json (1293 bytes)
+CREATE Frontend-Angular/README.md (1537 bytes)
+CREATE Frontend-Angular/tsconfig.json (942 bytes)
+CREATE Frontend-Angular/.editorconfig (331 bytes)
+CREATE Frontend-Angular/.gitignore (629 bytes)
+CREATE Frontend-Angular/tsconfig.app.json (508 bytes)
+CREATE Frontend-Angular/tsconfig.spec.json (449 bytes)
+CREATE Frontend-Angular/.vscode/extensions.json (134 bytes)
+CREATE Frontend-Angular/.vscode/launch.json (490 bytes)
+CREATE Frontend-Angular/.vscode/tasks.json (980 bytes)
+CREATE Frontend-Angular/src/main.ts (256 bytes)
+CREATE Frontend-Angular/src/index.html (314 bytes)
+CREATE Frontend-Angular/src/styles.scss (81 bytes)
+CREATE Frontend-Angular/src/main.server.ts (271 bytes)
+CREATE Frontend-Angular/src/server.ts (1702 bytes)
+CREATE Frontend-Angular/src/app/app.component.html (20239 bytes)
+CREATE Frontend-Angular/src/app/app.component.spec.ts (975 bytes)
+CREATE Frontend-Angular/src/app/app.component.ts (305 bytes)
+CREATE Frontend-Angular/src/app/app.component.scss (0 bytes)
+CREATE Frontend-Angular/src/app/app.config.ts (447 bytes)
+CREATE Frontend-Angular/src/app/app.routes.ts (80 bytes)
+CREATE Frontend-Angular/src/app/app.config.server.ts (509 bytes)
+CREATE Frontend-Angular/src/app/app.routes.server.ts (174 bytes)
+CREATE Frontend-Angular/public/favicon.ico (15086 bytes)
+⠏ Installing packages (npm)...npm warn deprecated inflight@1.0.6: This module is not supported, 
+and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\STYVE TOKO\\Application-de-Billetterie\\Frontend-Angular\\node_modules',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\STYVE TOKO\Application-de-Billetterie\Frontend-Angular\node_modules\resolve\test\resolver\symlinked\_\symlink_target'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\STYVE TOKO\\Application-de-Billetterie\\Frontend-Angular\\node_modules\\resolve\\test\\resolver\\symlinked\\_\\symlink_target'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\STYVE TOKO\\Application-de-Billetterie\\Frontend-Angular\\node_modules\\karma-jasmine',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\STYVE TOKO\Application-de-Billetterie\Frontend-Angular\node_modules\karma-jasmine\node_modules\jasmine-core\lib\jasmine-core\example\node_example\spec\helpers\jasmine_examples'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\STYVE TOKO\\Application-de-Billetterie\\Frontend-Angular\\node_modules\\karma-jasmine\\node_modules\\jasmine-core\\lib\\jasmine-core\\example\\node_example\\spec\\helpers\\jasmine_examples'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code ECONNRESET
+npm error syscall read
+npm error errno -4077
+npm error network read ECONNRESET
+npm error network This is a problem related to network connectivity.
+npm error network In most cases you are behind a proxy or have bad network settings.
+npm error network
+npm error network If you are behind a proxy, please make sure that the
+npm error network 'proxy' config is set properly.  See: 'npm help config'
+npm error A complete log of this run can be found in: C:\Users\STYVE TOKO\AppData\Local\npm-cache\_logs\2025-02-20T09_37_23_366Z-debug-0.log
+✖ Package install failed, see above.
+The Schematic workflow failed. See above.

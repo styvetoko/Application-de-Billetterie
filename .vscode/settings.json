@@ -23,5 +23,7 @@
         "utilisation",
         "votre",
         "vous"
-    ]
+    ],
+    "git.ignoreLimitWarning": true,
+    "explorer.openEditors.visible": 12
 }
