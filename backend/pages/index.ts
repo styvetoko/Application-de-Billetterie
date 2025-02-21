@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient, EventCreateInput, Event } from '@prisma/client';
+import { PrismaClient, EventCreateInput } from '@prisma/client';
 
 // Instance unique de Prisma (évite les connexions multiples)
 const prisma = new PrismaClient();
@@ -15,21 +15,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             case 'POST':
                 const body = JSON.parse(req.body);
-                const { name, date, categoryId, category }: {name: string, date: string, categoryId: number, category: Event} = body;
+                const { name, date, categoryId, description, location }: { name: string, date: string, categoryId: number, description?: string, location?: string } = body;
 
                 // Vérification des données
-                if (!name || !date || !categoryId || !category) {
+                if (!name || !date || !categoryId) {
                     return res.status(400).json({ error: 'Données incomplètes' });
                 }
 
                 //Conversion de la date en objet Date
                 const dateObject = new Date(date);
 
-                console.log(category)
+                //Données de création d'événement
+                const eventData = {
+                    name,
+                    date: dateObject,
+                    categoryId,
+                    description: description || '', // description optionnelle
+                    location: location || '' // location optionnelle
+                };
+
+                console.log("eventData", eventData)
 
                 const newEvent = await prisma.event.create({
-                    data: { name, date: dateObject, categoryId, category }
-                });
+                    data: eventData
+                })
 
 
                 return res.status(201).json(newEvent);
