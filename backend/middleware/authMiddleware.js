@@ -12,4 +12,6 @@ export function authenticate(req) {
   } catch (error) {
     throw new Error('Invalid token');
   }
+  console.log(token);
+  return token;
 }
