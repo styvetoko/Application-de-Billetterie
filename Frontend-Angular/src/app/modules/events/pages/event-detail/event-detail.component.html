@@ -1,0 +1,17 @@
+<p>event-detail works!</p>
+<mat-toolbar color="accent">
+  <span>{{ event.name }}</span>
+  <button mat-button [routerLink]="['/events']">Back</button>
+</mat-toolbar>
+
+<mat-card>
+  <img mat-card-image [src]="event.image" alt="Event Image">
+  <mat-card-title>{{ event.name }}</mat-card-title>
+  <mat-card-subtitle>{{ event.date }}</mat-card-subtitle>
+  <mat-card-content>
+    <p>{{ event.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="openDialog()">Buy Ticket</button>
+  </mat-card-actions>
+</mat-card>

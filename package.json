@@ -1,7 +1,7 @@
 {
   "name": "application-de-billetterie",
   "version": "1.0.0",
-  "description": "Une application de billetterie innovante qui simplifie l'achat et la gestion des billets en ligne. Pensée pour le marché africain, elle offre une expérience fluide, sécurisée et accessible à tous. Que ce soit pour des événements, des concerts ou des voyages, notre solution digitalise l'accès aux billets en toute simplicité.",
+  "description": "Une application de billetterie innovante qui simplifie la gestion des événements.",
   "directories": {
     "lib": "lib"
   },
@@ -16,7 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "stripe": "^17.6.0",
-    "@prisma/client": "^6.3.1"
+    "@prisma/client": "^6.3.1",
+    "another-dependency": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
@@ -26,6 +27,5 @@
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0"
   },
-  "keywords": [],
-  "description": ""
+  "keywords": []
 }
