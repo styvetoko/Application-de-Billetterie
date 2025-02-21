@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient, EventCreateInput } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 // Instance unique de Prisma (évite les connexions multiples)
 const prisma = new PrismaClient();
