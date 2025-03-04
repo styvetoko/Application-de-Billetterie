@@ -1,4 +1,6 @@
 import Stripe from 'stripe';
+import { NextResponse } from 'next/server';
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
@@ -11,6 +13,7 @@ export async function POST(req) {
     });
     return NextResponse.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
+    console.error("Payment error:", error);
     return NextResponse.json({ error: 'Payment failed' }, { status: 500 });
   }
 }

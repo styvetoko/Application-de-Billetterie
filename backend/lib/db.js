@@ -4,12 +4,10 @@ const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
 async function connectToDatabase() {
-    if (!client.isConnected()) {
+    if (!client.topology || !client.topology.isConnected()) {
         await client.connect();
     }
     return client.db();
 }
-
-
 
 export default connectToDatabase;

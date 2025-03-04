@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         switch (req.method) {
             case 'GET':
                 const events = await prisma.event.findMany({
-                    include: { category: true }
+                    include: { EventCategory: true }
                 });
                 return res.status(200).json(events);
 
@@ -22,10 +22,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     return res.status(400).json({ error: 'Données incomplètes' });
                 }
 
-                //Conversion de la date en objet Date
+                // Conversion de la date en objet Date
                 const dateObject = new Date(date);
 
-                //Données de création d'événement
+                // Données de création d'événement
                 const eventData = {
                     name,
                     date: dateObject,
@@ -34,12 +34,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     location: location || '' // location optionnelle
                 };
 
-                console.log("eventData", eventData)
+                console.log("eventData", eventData);
 
                 const newEvent = await prisma.event.create({
                     data: eventData
-                })
-
+                });
 
                 return res.status(201).json(newEvent);
 

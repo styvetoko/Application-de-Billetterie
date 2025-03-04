@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import { authenticate } from '../middleware/authMiddleware';
 
 export async function signup(userData) {
@@ -11,7 +12,6 @@ export async function login(userData) {
     const token = generateToken(user.id);
     return {user, token};
 }
-
 
 function generateToken(userId) {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
