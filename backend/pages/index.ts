@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import Joi from 'joi';
-import { format, isValid, parseISO } from 'date-fns';
+import Joi from 'joi'; 
+import { format, isValid, parse } from 'date-fns';
 // Instance unique de Prisma (évite les connexions multiples)
 const prisma = new PrismaClient();
 
@@ -26,9 +26,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         switch (req.method) {
             case 'GET':
-                const events = await prisma.event.findMany({
-                    include: { eventCategory: true },
+               const events = await prisma.event.findMany({
+                    include: { 
+                        eventCategory: true,
+                    },
                 });
+
 
                 // Sérialiser les dates au format ISO 8601
                 const serializedEvents = events.map(event => ({
@@ -49,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const { name, date, categoryId, description, location } = value;
 
                 // Validation et conversion de la date avec date-fns
-                const parsedDate = parseISO(date);
+                const parsedDate = parse("yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
                 if (!isValid(parsedDate)) {
                     return res.status(400).json({ error: "Format de date invalide" });
                 }
