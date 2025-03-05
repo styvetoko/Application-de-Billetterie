@@ -47,3 +47,21 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
+
+async function hashPassword(password) {
+  const saltRounds = 10; // Ajuste ce nombre pour la sécurité (plus c'est élevé, plus c'est sûr, mais plus lent)
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+  return hashedPassword;
+}
+
+// Exemple d'utilisation lors de la création d'un utilisateur :
+async function createUser(email, plainTextPassword) {
+  const hashedPassword = await hashPassword(plainTextPassword);
+  const user = await prisma.user.create({
+    data: {
+      email: email,
+      password: hashedPassword, // Stocke le mot de passe HACHÉ
+    },
+  });
+  return user;
+}
