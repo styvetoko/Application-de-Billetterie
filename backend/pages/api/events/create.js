@@ -35,6 +35,12 @@ export async function POST(req) {
       return NextResponse.json({ error: "Format de date invalide" }, { status: 400 });
     }
 
+    // Vérification de l'existence de la catégorie
+    const category = await prisma.eventCategory.findUnique({ where: { id: categoryId } });
+    if (!category) {
+      return NextResponse.json({ error: 'Catégorie non trouvée' }, { status: 404 });
+    }
+
     const event = await prisma.event.create({
       data: {
         name,

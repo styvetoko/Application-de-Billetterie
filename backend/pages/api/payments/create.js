@@ -14,21 +14,28 @@ const paymentSchema = Joi.object({
 
 // Fonction pour gérer les requêtes POST
 export async function POST(req) {
-    // Validation des données de la requête
-    const { error, value } = paymentSchema.validate(await req.json());
-    if (error) {
-        // Retourne une réponse d'erreur si la validation échoue
-        return NextResponse.json({ error: error.details[0].message }, { status: 400 });
-    }
-
-    const { amount, currency, ticketId } = value;
-
     try {
+        // Validation des données de la requête
+        const { error, value } = paymentSchema.validate(await req.json());
+        if (error) {
+            // Retourne une réponse d'erreur si la validation échoue
+            return NextResponse.json({ error: error.details[0].message }, { status: 400 });
+        }
+
+        const { amount, currency, ticketId } = value;
+
+        // Vérification de l'existence du ticket
+        const ticket = await prisma.ticket.findUnique({ where: { id: ticketId } });
+        if (!ticket) {
+            return NextResponse.json({ error: 'Ticket non trouvé' }, { status: 404 });
+        }
+
         // Création d'une intention de paiement avec Stripe
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency,
         });
+
         // Retourne le client secret de l'intention de paiement
         return NextResponse.json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {

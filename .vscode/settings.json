@@ -5,6 +5,7 @@
         "Ajoutez",
         "analyse",
         "après",
+        "Assurez",
         "autorisée",
         "autorisées",
         "caractères",
@@ -13,6 +14,7 @@
         "connexion",
         "connexions",
         "contenir",
+        "Convertir",
         "Crée",
         "Créez",
         "Déconnectez",
@@ -81,5 +83,6 @@
     ],
     "git.ignoreLimitWarning": true,
     "explorer.openEditors.visible": 12,
-    "editor.linkedEditing": true
+    "editor.linkedEditing": true,
+    "importCost.debug": true
 }

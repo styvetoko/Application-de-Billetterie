@@ -33,7 +33,17 @@ model Event {
   tickets     Ticket[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  categoryId  Int
+  eventCategory EventCategory @relation(fields: [categoryId], references: [id])
   @@index([date])
+}
+
+model EventCategory {
+  id    Int     @id @default(autoincrement())
+  name  String
+  events Event[]
+  // Ajout de la relation inverse
+  events Event[]
 }
 
 model Ticket {

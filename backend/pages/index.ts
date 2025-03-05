@@ -2,9 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import Joi from 'joi';
-import { format, isValid } from 'date-fns';
-import { parseISO } from 'date-fns';
-
+import { format, isValid, parseISO } from 'date-fns';
 // Instance unique de Prisma (évite les connexions multiples)
 const prisma = new PrismaClient();
 
@@ -29,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         switch (req.method) {
             case 'GET':
                 const events = await prisma.event.findMany({
-                    include: { eventCategory: true }
+                    include: { eventCategory: true },
                 });
 
                 // Sérialiser les dates au format ISO 8601
