@@ -14,11 +14,14 @@ datasource db {
 }
 
 // Modeles
+
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   password  String
   tickets   Ticket[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Event {
@@ -28,6 +31,19 @@ model Event {
   date        DateTime
   location    String
   tickets     Ticket[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  categoryId  Int
+  eventCategory EventCategory @relation(fields: [categoryId], references: [id])
+  @@index([date])
+}
+
+model EventCategory {
+  id    Int     @id @default(autoincrement())
+  name  String
+  events Event[]
+  // Ajout de la relation inverse
+  events Event[]
 }
 
 model Ticket {
@@ -38,4 +54,6 @@ model Ticket {
   user      User     @relation(fields: [userId], references: [id])
   price     Float
   status    String   @default("active")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

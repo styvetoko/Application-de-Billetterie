@@ -1,16 +1,13 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
         <title>Application de Billetterie</title>
-        <meta
-          name="description"
-          content="Application de billetterie générée par Next.js"
-        />
+        <meta name="description" content="Application de billetterie générée par Next.js" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -22,7 +19,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <p className={styles.description}>
-          Commencez par éditer{" "}
+          Commencez par éditer{' '}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
@@ -56,7 +53,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Propulsé par{" "}
+          Propulsé par{' '}
           <img src="/vercel.svg" alt="Logo Vercel" className={styles.logo} />
         </a>
       </footer>
