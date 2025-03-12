@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import Joi from 'joi'; 
+import Joi from 'joi';
 import { format, isValid, parse } from 'date-fns';
 // Instance unique de Prisma (évite les connexions multiples)
 const prisma = new PrismaClient();
@@ -22,14 +22,25 @@ type EventData = {
     location?: string;
 };
 
+type EventInclude<T> = {
+    // ...autres propriétés...
+    category: {
+        name: string;
+    }; // assuming eventCategory is a relation to a category with a name
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         switch (req.method) {
             case 'GET':
-               const events = await prisma.event.findMany({
-                    include: { 
-                        eventCategory: true,
-                    },
+                        const events = await prisma.event.findMany({
+                            include: {
+                                category: {
+                                    select: {
+                                        name: true
+                                    }
+                                }
+                            }
                 });
 
 
